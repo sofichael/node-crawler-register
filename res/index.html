@@ -1,9 +1,8 @@
 ﻿<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <meta charset="utf-8" />
-    <title>node-cralwer</title>
+    <title>node-cralwer-register</title>
     <script src="jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="header.css" />
@@ -29,17 +28,26 @@
                 $("#info").children('ul').prepend('<li class="' + data.color + '">' + $(data.info).find('.caltbl').parent()[0].innerHTML + '</li>');
                 if ($('.caltbl p span').find('.c3')[0]) {
                     $("#info").children('ul').prepend('<li class="red">预约：<a href="http://guahao.cq12320.cn/login.aspx" target="_blank">点击预约</a></li>');
-                }else{
-                    $("#info").children('ul').prepend('<li class="red">无预约</li>');
                     if(Notification.permission !== 'granted'){
                       Notification.requestPermission();
                     }
                     n = new Notification( "预约通知", {
-                      body: "预约开始",
-                      icon : "star.ico"
+                      body: '预约开始<a href="http://guahao.cq12320.cn/login.aspx" target="_blank">点击预约</a>',
+                      icon : 'star.ico'
                     });
+                }else{
+                    $("#info").children('ul').prepend('<li class="red">无预约'+new Date()+'</li>');
                 }
             }else{
+                if (data.info === '请求失败') {
+                    if(Notification.permission !== 'granted'){
+                      Notification.requestPermission();
+                    }
+                    n = new Notification( "错误通知", {
+                      body: '获取异常',
+                      icon : 'star.ico'
+                    });
+                }
                 $("#info").children('ul').prepend('<li class="' + data.color + '">' + data.info + '</li>');
             }
         };

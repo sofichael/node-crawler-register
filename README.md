@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # node-crawler
 Nodejs爬虫工具，可抓取图片和文本
 
@@ -26,7 +25,3 @@ $ node app.js
 	- **attr**：url所在的属性（即`$`中查找的dom元素）
 - **headers**：头部信息。可选
 - **imageFn**：自定义函数，对图片地址进行处理，如抓取到的图片地址是：`http://xxx.com/imgsmall/123.jpg`此地址是一张小图，而大图的地址是：`http://xxx.com/imgbig/123.jpg`，此时可以使用到`imageFn`函数：function(url){ return url.replace('imgsmall','imgbig'); }
-=======
-# node-crawler-register
-预约挂号邮件提醒应用
->>>>>>> 0c4329dc72061deb82647c84f703095070837197

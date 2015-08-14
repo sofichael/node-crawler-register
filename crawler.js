@@ -26,12 +26,12 @@ var Crawler = function() {
 /// 开始处理的入口
 Crawler.prototype.crawl = function() {
     var that = this;
-    var second = 0;
+    var second = 1;
     that.log('程序正在执行中...');
 
     var timer = null;
     timer = setInterval(function() {
-        if (second < 5) {
+        if (second > 0) {
             that.request(rooturl(1), function(status, $) {
                 if (status) {
                     that.log('第' + second + '次分析完成', 'green');
@@ -44,7 +44,7 @@ Crawler.prototype.crawl = function() {
             clearInterval(timer);
         }
         second += 1;
-    }, 2000);
+    }, 10000);
 };
 
 /// 处理text
@@ -200,18 +200,15 @@ Crawler.prototype.request = function(url, callback) {
     config.headers && (opts.headers = config.headers);
 
     that.log('发送' + url + '，等待响应中...', 'grey');
-    iconv.extendNodeEncodings(); /// 转码用
+    // iconv.extendNodeEncodings(); /// 转码用
     request(opts, function(err, res, body) {
         var $ = null;
         if (!err && res.statusCode == 200) {
-            // that.log(res.statusCode, 'green');
-            // $ = cheerio.load(body);
             $ = body;
-            // that.log(body, 'green',true);
         } else {
             !err && that.log(res.statusCode, 'red');
         }
-        iconv.undoExtendNodeEncodings();
+        // iconv.undoExtendNodeEncodings();
         callback(!!$, $);
     });
 };

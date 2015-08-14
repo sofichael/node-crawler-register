@@ -27,13 +27,13 @@ module.exports = function (color, n) {
     };
     var n = n || 1;
     var s = '';
-    for (var i = 0; i < n; i++) { 
+    for (var i = 0; i < n; i++) {
         s += '%s ';
     }
     if (color) {
         return styles[color].join(s.trim());
-    } else { 
+    } else {
         return '%s';
     }
-    
+
 }
