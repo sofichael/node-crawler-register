@@ -1,7 +1,7 @@
 ﻿var cp = require('child_process');
 var config = require('./config.js');
 
-// var notify = require('gulp-notify');
+var mail = require('./mail.js');
 
 if (config.mode === 'console') {
     cp.fork('./crawler.js');
@@ -48,7 +48,7 @@ http.createServer(function (req, res) {
         res.end();
     });
 }).listen(port, function () {
-    console.log('监听端口%s中', port);
+    console.log('程序启动监听端口%s, 访问地址:http://localhost:8000', port);
 });
 
 var worker;
@@ -65,6 +65,8 @@ wss.on('connection', function connection(_ws) {
             });
         } else if (message === "stop") {
             worker.kill();
+        }else if (message === "mail") {
+            mail.sendMail();
         }
 
         //ws.send('you said:' + message);

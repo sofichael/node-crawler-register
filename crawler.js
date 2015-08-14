@@ -26,12 +26,12 @@ var Crawler = function() {
 /// 开始处理的入口
 Crawler.prototype.crawl = function() {
     var that = this;
-    var second = 1;
+    var second = 0;
     that.log('程序正在执行中...');
 
     var timer = null;
     timer = setInterval(function() {
-        if (second > 0) {
+        if (second > -1) {
             that.request(rooturl(1), function(status, $) {
                 if (status) {
                     that.log('第' + second + '次分析完成', 'green');
