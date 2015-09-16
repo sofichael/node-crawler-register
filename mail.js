@@ -5,8 +5,8 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
   secureConnection: true,
   port: 465,
   auth: {
-    user: "sofichael@126.com",
-    pass: "sofichael#1314"
+    user: "",
+    pass: ""
   }
 });
 
